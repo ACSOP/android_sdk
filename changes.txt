@@ -1,0 +1,87 @@
+Change log for Android SDK Tools.
+
+Revision 14:
+
+- Build performance improvements:
+   * resource compilation and packaging now properly use dependency to only
+     be executed if a resource changed.
+   * Optimized resource compilation for projects with libraries. This should
+     speed up this phase significantly for large projects with libraries.
+   * PNG files that are optimized during resource packaging are now cached
+     and only re-optimized if they changed instead of doing at every build.
+- New library project mechanism:
+   *
+
+Revision 13:
+
+Revision 12: (07/2011):
+- The AVD manager and emulator can now use system images compiled for ARM v7 and
+  x86 CPUs.
+
+Revision 11 (05/2011):
+- See eclipse/changes.txt for ADT related changes.
+
+Revision 10 (02/2011):
+- The tools now automatically generate Java Programming Language
+  source files (in the gen directory) and bytecode (in the res/raw
+  directory) from your native .rs files
+
+Revision 9 (01/2011):
+- Fix packaging issue that broke draw9patch
+- Ant build rules will now check the Ant version and fail if it's older than 1.8
+- Fix "folder locked" errors when installing packages in SDK Manager on Windows.
+- Support https proxy when installing from SDK Manager.
+- SDK Manager now suggests to install missing base platform for add-ons.
+- Default proguard config file changes:
+   * ignore classes extending android.preference.Preference
+   * ignore classes extending android.app.backup.BackupAgentHelper
+- Ant lib rules now allow for overriding java.encoding, java.source, and java.target
+- Default encoding for Ant javac is now UTF-8
+- Logcat view in DDMS now properly displays UTF-8 characters.
+
+
+Revision 8 (12/2010):
+- New SDK component: platform-tools. This makes all platforms use the same
+  latest version of aapt/aidl/dx.
+- Support for true debug build. No need to change the value of debuggable in
+  the Android Manifest.
+  "ant debug" will automatically insert debuggable==true, while "ant release"
+  will not.
+  If debuggable=true is set, then "ant release" will actually do a debug build.
+- Automatic Proguard support in release builds. Only need to have a proguard.config
+  property in default.properties that points to a proguard config file.
+- new overridable Ant javac properties: java.encoding, java.source, and java.target
+  (default to "ascii", "1.5" and "1.5")
+
+
+Revision 7 (09/2010):
+- Support for Ant rules provided by the Tools components (override the one in
+  the platform component)
+- Added support for libraries with library dependencies.
+- Support for aidl files in library projects.
+- Support for extension targets in Ant build to perform tasks between the
+  normal tasks: -pre-build, -pre-compile, -post-compile.
+- Headless SDK update. See 'android -h update sdk' for more info.
+- Fixed location control in DDMS to work in any locale not using '.' as a
+  decimal point.
+
+
+Revision 6 (05/2010)
+- Support for library project to share code/resources among projects
+    - Updated Ant rules and custom tasks
+    - New "android create lib-project", "android update lib-project" actions.
+    - New parameter for "android update project"
+
+
+Revision 5 (03/2010):
+- AVD/SDK Manager:
+	- Fixed SSL download for the standalone version of the SDK Updater.
+	- Fixed issue with 64bit JVM on windows.
+	- Add support for samples components.
+	- improved support for dependency between components.
+	- AVDs now sorted by API level.
+	- Prevent deletion of running AVDs.
+	- Settings are now automatically saved, no need to click Apply.
+- Emulator now requires sd card to be 9MB and above.
+- Fixed layoutopt.bat to correctly execute on Windows.
+
